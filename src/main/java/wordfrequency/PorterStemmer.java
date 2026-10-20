@@ -1,27 +1,28 @@
 package wordfrequency;
 
 public class PorterStemmer {
+
     private char[] wordArray;
-
     private int endIndex;
-
     private int stemIndex;
 
     /**
-     * Stem the passed in word.
+     * Extrage rădăcina unui cuvânt (stemming).
      *
-     * @param word Word to evaluate
-     * @return Stemmed word
+     * @param word Cuvântul de evaluat
+     * @return Rădăcina cuvântului (stemmed word)
      */
     public String stemWord(String word) {
+        // Verificăm dacă este un cuvânt valid pentru procesare
         if (word == null || word.trim().isEmpty() || word.length() <= 2) {
             return word;
         }
 
         wordArray = word.toCharArray();
-
         stemIndex = 0;
         endIndex = word.length() - 1;
+
+        // Aplicăm succesiv pașii algoritmului
         step1();
         step2();
         step3();
@@ -247,6 +248,7 @@ public class PorterStemmer {
             if (wordArray[index + i] != s.charAt(i)) return false;
         }
         stemIndex = endIndex - length;
+
         return true;
     }
 
